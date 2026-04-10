@@ -5,7 +5,11 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from routes import auth, health
 from config.db import engine, Base
 
-# Create DB tables
+# ── CRITICAL: import ALL models before create_all so every table is registered ─
+import models.user          # noqa: F401
+import models.assessment    # noqa: F401
+
+# Create DB tables (idempotent – safe to run every startup)
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="PreventIQ Auth API")
