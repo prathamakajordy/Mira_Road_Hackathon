@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { InputField } from '../components/FormComponents';
 import { ArrowRight, Lock, Mail, User } from 'lucide-react';
 
 export default function Auth() {
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState('login'); // 'login' or 'create'
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => setMounted(true), 100);
@@ -13,10 +16,17 @@ export default function Auth() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(`Submitting ${activeTab}...`);
+    // SET MOCK TOKEN
+    localStorage.setItem("token", "demo-token");
+    // After successful auth, redirect to main dashboard
+    navigate('/dashboard');
   };
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-br from-[#f8f5fd] via-[#fcebfa] to-[#f4e2ff] overflow-x-hidden font-sans">
+      <div className="fixed top-0 left-0 bg-black text-white px-2 py-1 z-[9999] text-xs font-mono">
+        Auth Page
+      </div>
       
       {/* Background Floating Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">

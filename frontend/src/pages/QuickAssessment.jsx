@@ -50,6 +50,9 @@ export default function QuickAssessment() {
 
   return (
     <div className="relative flex flex-col items-center justify-start min-h-screen p-4 py-12 bg-gradient-to-br from-[#f8f5fd] via-[#fcebfa] to-[#f4e2ff] overflow-x-hidden font-sans">
+      <div className="fixed top-0 left-0 bg-black text-white px-2 py-1 z-[9999] text-xs font-mono">
+        Assessment Page
+      </div>
       
       {/* Subtle Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">

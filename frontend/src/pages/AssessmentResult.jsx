@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Activity, Heart, Droplet, ArrowRight, ShieldCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const HealthGauge = ({ score }) => {
   const [currentScore, setCurrentScore] = useState(0);
@@ -86,6 +87,7 @@ const InsightCard = ({ icon: Icon, title, description }) => (
 
 export default function AssessmentResult() {
   const [mounted, setMounted] = useState(false);
+  const navigate = useNavigate();
   
   // Mock Data
   const report = {
@@ -103,6 +105,9 @@ export default function AssessmentResult() {
 
   return (
     <div className="relative flex flex-col items-center justify-start min-h-screen p-4 py-16 bg-gradient-to-br from-[#f8f5fd] via-[#fcebfa] to-[#f4e2ff] overflow-x-hidden font-sans">
+      <div className="fixed top-0 left-0 bg-black text-white px-2 py-1 z-[9999] text-xs font-mono">
+        Result Page
+      </div>
       
       {/* Subtle Background Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
@@ -151,7 +156,7 @@ export default function AssessmentResult() {
             Save your results and track progress over time
           </p>
           <button 
-            onClick={() => window.location.href = '/auth'}
+            onClick={() => navigate('/auth')}
             className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 font-semibold text-white transition-all duration-300 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-[0_10px_20px_rgba(236,72,153,0.3)] hover:shadow-[0_15px_30px_rgba(236,72,153,0.5)] hover:-translate-y-1 overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
